@@ -6,9 +6,33 @@ body {
   font-family: 'Poppins', sans-serif;
 }
 
+h1 {
+  margin: 0;
+  border: 1px solid lightblue;
+}
+
 .container {
-  width: 1400px;
+  width: 70vw;
   margin: 0 auto;
+  display: flex;
+}
+
+.left {
+  width: 25%;
+  border: 1px solid lightblue;
+  overflow-wrap: break-word;
+}
+
+.right {
+  width: 75%;
+}
+
+/* --------------------------- */
+
+.ctaAPI {
+  border: 1px solid lightblue;
+  width: 100%;
+  /* height: 100%; */
 }
 
 input {
@@ -16,30 +40,15 @@ input {
 }
 
 button {
-  width: 19%;
-  height: 100%;
-}
-
-h1 {
-  margin: 0;
-  border: 1px solid lightblue;
-}
-
-.bottom {
-}
-
-.ctaAPI {
-  border: 1px solid lightblue;
-  width: 100%;
-  height: 100%;
+  width: 18%;
+  /* height: 100%; */
 }
 
 #resAPI {
   width: 100%;
   border: 1px solid lightblue;
   color: #555;
+  overflow-wrap: break-word;
 }
 
-.top {
-  /* width: 100%; */
-}
+/* --------------------------- */

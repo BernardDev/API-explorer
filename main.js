@@ -11,6 +11,13 @@ function executeTest() {
 
   // EVENT HANDLING / FETCHING / RENDERING / STATUS CODE REPLY
   async function getApiJSON(value) {
+    // add the value of input to html colelction / array / nodecollection
+    const left = document.querySelector('.left');
+    const paragraph = document.createElement('p');
+    left.appendChild(paragraph);
+    const history = document.createTextNode(value);
+    paragraph.appendChild(history);
+
     let res = await fetch(`${value}`);
 
     const status = document.getElementById('status');

@@ -13,14 +13,30 @@
 
 <body>
     <div class="container">
-        <h1>API Explorer</h1>
-        <div class="ctaAPI">
-            <input type="text" id="inputAPI" value="https://pokeapi.co/api/v2/pokemon/ditto" />
-            <button id="fetchBtn">Get JSON</button>
+        <div class="left">
+            <template class='template'>
+                <div class="card">
+                    <div id='status'>
+                        <!-- same content as request itself -->
+                        <!-- content = only possible after request is made  -->
+                    </div>
+                    <p class='URL'>
+                        <!-- same content as request itself -->
+                        <!-- content = directly from input field -->
+                    </p>
+                </div>
+            </template>
         </div>
-        </button>
-        <div id='status'></div>
-        <div id='resAPI'></div>
+        <div class="right">
+            <h1>API Explorer</h1>
+            <div class="ctaAPI">
+                <input type="text" id="inputAPI" value="https://pokeapi.co/api/v2/pokemon/ditto" />
+                <button id="fetchBtn">Get JSON</button>
+            </div>
+            </button>
+            <div id='status'></div>
+            <div id='resAPI'></div>
+        </div>
     </div>
 </body>
 
