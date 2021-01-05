@@ -9,8 +9,8 @@
 # TO DO'S
 
 - [x] rendering a previously requested URL to the page
-- [] rendering a list of all previously requested URL to the page
 - [] adding form elements to the history (template)
+- [] rendering a list of all previously requested URL to the page
 - [] deleting all history items
   - button
   - event listener
@@ -18,9 +18,22 @@
   - clear (list)
   - class
   - overwrite
-- [] look up a previously requested item
-  -
+- ## SOMETHINGS
+- [x] printed status code
+- [ ] correct colors
+- [ ] correct reset behavior
+- [] printed value
+- [] card is not card
+- [] hij pushed the text nodes, but does not create new cards
 
 # BUGS
 
-- [] only last searched URL get's appended
+- [x] only last searched URL get's appended
+- [x] class typo
+- [ ] status is content of template, status is not the status
+
+- [] when appending status code it disappears from main location
+
+# TUTORIAL VIDEO
+
+- https://www.youtube.com/watch?v=OSficvLDefM

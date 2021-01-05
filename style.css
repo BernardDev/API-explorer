@@ -32,7 +32,6 @@ h1 {
 .ctaAPI {
   border: 1px solid lightblue;
   width: 100%;
-  /* height: 100%; */
 }
 
 input {
@@ -41,7 +40,10 @@ input {
 
 button {
   width: 18%;
-  /* height: 100%; */
+}
+
+.card {
+  border: 1px solid lightblue;
 }
 
 #resAPI {
@@ -49,6 +51,10 @@ button {
   border: 1px solid lightblue;
   color: #555;
   overflow-wrap: break-word;
+}
+
+.btn--remove {
+  width: 100%;
 }
 
 /* --------------------------- */

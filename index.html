@@ -6,26 +6,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
-    <script src="/main.js" async></script>
     <link rel="stylesheet" href="style.css">
     <title>API Explorer</title>
+    <template class="tempy">
+        <button class='btn--remove'>Clear All</button>
+    </template>
+    <template class='template'>
+        <div class="card">
+            <div class='cardStatus'>
+            </div>
+            <div class='APIurl'>
+            </div>
+        </div>
+    </template>
 </head>
 
 <body>
     <div class="container">
         <div class="left">
-            <template class='template'>
-                <div class="card">
-                    <div id='status'>
-                        <!-- same content as request itself -->
-                        <!-- content = only possible after request is made  -->
-                    </div>
-                    <p class='URL'>
-                        <!-- same content as request itself -->
-                        <!-- content = directly from input field -->
-                    </p>
-                </div>
-            </template>
         </div>
         <div class="right">
             <h1>API Explorer</h1>
@@ -34,10 +32,11 @@
                 <button id="fetchBtn">Get JSON</button>
             </div>
             </button>
-            <div id='status'></div>
+            <div class='explorerStatus'></div>
             <div id='resAPI'></div>
         </div>
     </div>
+    <script src="/main.js"></script>
 </body>
 
 </html>
