@@ -8,15 +8,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <title>API Explorer</title>
-    <template class="tempy">
-        <button class='btn--remove'>Clear All</button>
-    </template>
     <template class='template'>
         <div class="card">
-            <div class='cardStatus'>
+            <div class='historyStatus'>
             </div>
-            <div class='APIurl'>
+            <div class='url'>
             </div>
+            <button class="btn--repeat">
+                repeat
+            </button>
         </div>
     </template>
 </head>
@@ -24,16 +24,19 @@
 <body>
     <div class="container">
         <div class="left">
+            <div class="spacer"></div>
+            <button class="btn--clear">Clear All</button>
+            <div class='templateRender'></div>
         </div>
         <div class="right">
             <h1>API Explorer</h1>
             <div class="ctaAPI">
-                <input type="text" id="inputAPI" value="https://pokeapi.co/api/v2/pokemon/ditto" />
-                <button id="fetchBtn">Get JSON</button>
+                <input type="text" id="inputField" value="https://pokeapi.co/api/v2/pokemon/ditto" />
+                <button id="btn--fetch">Get JSON</button>
             </div>
             </button>
             <div class='explorerStatus'></div>
-            <div id='resAPI'></div>
+            <div id='displayedJson'></div>
         </div>
     </div>
     <script src="/main.js"></script>

@@ -23,8 +23,24 @@ h1 {
   overflow-wrap: break-word;
 }
 
+/* .left ::after {
+  content: '';
+  height: 48px;
+  background-color: red;
+} */
+
+.spacer {
+  height: 48px;
+}
+
 .right {
   width: 75%;
+}
+
+input,
+button {
+  margin: 0;
+  padding: 0;
 }
 
 /* --------------------------- */
@@ -53,7 +69,27 @@ button {
   overflow-wrap: break-word;
 }
 
+.templateRender {
+  display: block;
+}
+
+.btn {
+}
+
 .btn--remove {
+  width: 100%;
+}
+
+.btn--fetch {
+  width: 100%;
+}
+
+.btn--clear {
+  width: 100%;
+  /* display: none; */
+}
+
+.btn--repeat {
   width: 100%;
 }
 
