@@ -6,6 +6,21 @@ function executeTest() {
       .addEventListener('click', fetchJSONBasedOnUserInput);
   }
 
+  function addEventListenerRepeat() {
+    console.log('does it run');
+    document
+      .querySelector('.btn--repeat')
+      .addEventListener('click', repeatJsonRequest);
+    // should only be added after initiating templateCard copy
+    // should be added on each instance of the templateCard
+  }
+
+  function addEventListenerClear() {
+    document
+      .getElementById('btn--clear')
+      .addEventListener('click', clearJsonRequestHistory);
+  }
+
   function getURLfromInput() {
     return document.getElementById('inputField').value;
   }
@@ -21,6 +36,11 @@ function executeTest() {
     displayInExplorer(res);
   }
 
+  function repeatJsonRequest() {
+    // here we need the url from temp instance
+    console.log(url);
+  }
+
   async function fetchJSON(url) {
     try {
       let res = await fetch(`${url}`);
@@ -30,7 +50,6 @@ function executeTest() {
         return {status: res.status, ok: res.ok};
       }
     } catch (e) {
-      console.log(e);
       return {status: 'error', ok: false};
     }
   }
@@ -64,6 +83,9 @@ function executeTest() {
   function addToHistory(res, url) {
     let historyCard = createHistoryCard(res, url);
     document.querySelector('.templateRender').appendChild(historyCard);
+    addEventListenerRepeat();
+    // get url from instance
+    // give unique id
   }
 
   function createHistoryCard(res, url) {
@@ -74,7 +96,14 @@ function executeTest() {
     displayStatus(res, templateStatus);
     const targetUrl = document.createTextNode(url);
     historyCard.querySelector('.url').appendChild(targetUrl);
+    addEventListenerClear();
+    // get url from instance
+    // give unique id
     return historyCard;
+  }
+
+  function clearJsonRequestHistory() {
+    let what = (document.querySelector('.templateRender').innerHTML = '');
   }
 
   function displayStatus(res, element) {
@@ -91,6 +120,8 @@ function executeTest() {
     element.appendChild(statusMessage);
   }
   addEventListenerFetch();
+
+  // addEventListenerRepeat();
 }
 executeTest();
 
