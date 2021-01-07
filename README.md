@@ -37,3 +37,19 @@
 # TUTORIAL VIDEO
 
 - https://www.youtube.com/watch?v=OSficvLDefM
+
+AANPAK REFFACTORING
+nieuwe functie
+stukje code daar in plakken
+parameters (placeholders) invullen
+content afhankelijke van parameter herschrijven
+returnen ?
+bedenken waar de functie te callen
+arguments invullen
+
+functionality
+chunking
+data vs formatting
+isolate test
+naming: describing
+delegating function
