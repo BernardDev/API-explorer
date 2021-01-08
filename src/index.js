@@ -1,3 +1,6 @@
+// import './style.css';
+import './style.scss';
+
 function executeTest() {
   // EVENT LISTENERS
   function addEventListenerFetch() {

@@ -53,8 +53,14 @@ p {
   --grey: #dfdfdf;
 }
 
+$body-color: green;
+
+body {
+}
+
 body {
   font-family: 'Poppins', sans-serif;
+  color: $body-color;
 }
 
 h1 {
@@ -78,6 +84,16 @@ h1 {
 }
 
 .header {
+}
+
+/* .left ::after {
+    content: '';
+    height: 48px;
+    background-color: red;
+  } */
+
+.spacer {
+  height: 48px;
 }
 
 .content {
@@ -218,5 +234,3 @@ pre {
   padding: 0.3rem 0;
   width: 100%;
 }
-
-/* --------------------------- */
