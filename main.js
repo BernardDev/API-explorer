@@ -1,40 +1,135 @@
 function executeTest() {
-  // ADD EVENT LISTENER / GET VALUE INPUT FIELD
-  function eventListening() {
-    const button = document.getElementById('fetchBtn');
-    button.addEventListener('click', () => {
-      const input = document.getElementById('inputAPI');
-      const value = input.value;
-      getApiJSON(value);
-    });
+  // EVENT LISTENERS
+  function addEventListenerFetch() {
+    document
+      .getElementById('btn--fetch')
+      .addEventListener('click', fetchJSONBasedOnUserInput);
   }
 
-  // EVENT HANDLING / FETCHING / RENDERING / STATUS CODE REPLY
-  async function getApiJSON(value) {
-    let res = await fetch(`${value}`);
+  function addEventListenerClear() {
+    document
+      .getElementById('btn--clear')
+      .addEventListener('click', clearJsonRequestHistory);
+  }
 
-    const status = document.getElementById('status');
-    status.innerText = '';
-    let code = res.ok ? 'Ok' : 'Not ok';
-    const statuscode = document.createTextNode(
-      `Response: ${res.status} ${code}`
-    );
-    status.appendChild(statuscode);
-    if (res.ok) {
-      let data = await res.json();
-      let jsonParsed = JSON.stringify(data, null, 4);
-      // printing the json
-      const API = document.getElementById('resAPI');
-      const pre = document.createElement('pre');
-      resAPI.appendChild(pre);
-      const text = document.createTextNode(jsonParsed);
-      pre.appendChild(text);
-      document.querySelector('#status').style.backgroundColor = '#28ff85';
-    } else {
-      document.querySelector('#status').style.backgroundColor = '#ff4128';
-      document.getElementById('resAPI').innerHTML = '';
+  // ---------------------------------------------------------
+
+  // INPUT FIELD
+  function getURLfromInput() {
+    return document.getElementById('inputField').value;
+  }
+
+  function fetchJSONBasedOnUserInput() {
+    const url = getURLfromInput();
+    delegateNfetch(url);
+  }
+
+  // ---------------------------------------------------------
+
+  // DATA
+  async function fetchJSON(url) {
+    try {
+      let res = await fetch(`${url}`);
+      if (res.ok) {
+        return {status: res.status, ok: res.ok, json: await res.json()};
+      } else {
+        return {status: res.status, ok: res.ok};
+      }
+    } catch (e) {
+      return {status: '404', ok: false};
     }
   }
-  eventListening();
+
+  async function delegateNfetch(url) {
+    const res = await fetchJSON(url);
+    addToHistory(res, url);
+    displayInExplorer(res);
+  }
+  // ---------------------------------------------------------
+
+  // JSON
+  function displayJson(json) {
+    let jsonParsed = JSON.stringify(json, null, 4);
+    const pre = document.createElement('pre');
+    const text = document.createTextNode(jsonParsed);
+    pre.appendChild(text);
+    document.getElementById('displayedJson').appendChild(pre);
+  }
+
+  // ---------------------------------------------------------
+
+  // EXPLORER
+  function displayInExplorer(res) {
+    document.getElementById('displayedJson').innerHTML = '';
+    if (res.ok) {
+      displayJson(res.json);
+    }
+    const explorerStatus = document.querySelector('.explorerStatus');
+    explorerStatus.innerText = '';
+
+    displayStatus(res, explorerStatus);
+  }
+
+  // ---------------------------------------------------------
+
+  // HISTORY TEMP
+  function createHistoryCard(res, url) {
+    let historyTemplate = document.querySelector('.template').content;
+    let historyCard = historyTemplate.cloneNode(true);
+
+    const templateStatus = historyCard.querySelector('.historyStatus');
+    displayStatus(res, templateStatus);
+    const targetUrl = document.createTextNode(url);
+    historyCard.querySelector('.url').appendChild(targetUrl);
+    addEventListenerClear();
+
+    historyCard
+      .getElementById('btn--repeat')
+      .addEventListener('click', function () {
+        document.getElementById('inputField').value = url;
+        delegateNfetch(url);
+        console.log(this);
+        this.parentElement.remove();
+      });
+    return historyCard;
+  }
+
+  function addToHistory(res, url) {
+    let historyCard = createHistoryCard(res, url);
+    document.querySelector('.templateRender').appendChild(historyCard);
+  }
+
+  //
+  function clearJsonRequestHistory() {
+    let what = (document.querySelector('.templateRender').innerHTML = '');
+  }
+
+  // ---------------------------------------------------------
+
+  // STATUS MESSAGE
+  function displayStatus(res, element) {
+    let code;
+    if (res.ok) {
+      code = 'Ok';
+      element.style.backgroundColor = '#3caea3';
+      // element.style.backgroundColor = '#3caea3';
+    } else {
+      code = 'Not ok';
+      element.style.backgroundColor = '#ed553b';
+      // element.style.backgroundColor = '#ed553b';
+    }
+
+    const statusMessage = createStatus(res.status, code);
+    element.appendChild(statusMessage);
+  }
+
+  function createStatus(status, code) {
+    const statusMessage = document.createTextNode(
+      `Response: ${status} ${code}`
+    );
+    return statusMessage;
+  }
+
+  addEventListenerFetch();
 }
 executeTest();

@@ -6,22 +6,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
-    <script src="/main.js" async></script>
     <link rel="stylesheet" href="style.css">
     <title>API Explorer</title>
+    <template class='template'>
+        <div class="card">
+            <div class='historyStatus'>
+            </div>
+            <div class='url'>
+            </div>
+            <button class="btn btn--repeat" id="btn--repeat">
+                repeat
+            </button>
+        </div>
+    </template>
 </head>
+<!-- https://pokeapi.co/api/v2/pokemon/ditto -->
 
 <body>
     <div class="container">
-        <h1>API Explorer</h1>
-        <div class="ctaAPI">
-            <input type="text" id="inputAPI" value="https://pokeapi.co/api/v2/pokemon/ditto" />
-            <button id="fetchBtn">Get JSON</button>
-        </div>
-        </button>
-        <div id='status'></div>
-        <div id='resAPI'></div>
+        <header class="header">
+            <h1>API Explorer</h1>
+        </header>
+        <main class="content">
+            <div class="left">
+                <button class="btn btn--clear" id="btn--clear">Clear All</button>
+                <div class="spacer2"></div>
+                <!-- <hr> -->
+                <div class='templateRender'></div>
+            </div>
+            <div class="right">
+                <div class="ctaAPI">
+                    <input type="text" id="inputField" value="" />
+                    <button class="btn btn--fetch" id="btn--fetch">Get JSON</button>
+                </div>
+                </button>
+                <div class="spacer2"></div>
+                <!-- <hr> -->
+                <div class='explorerStatus'></div>
+                <div id='displayedJson'></div>
+            </div>
+        </main>
     </div>
+    <script src="/main.js"></script>
 </body>
 
 </html>
