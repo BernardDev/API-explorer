@@ -1,5 +1,56 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /* border: 1px black solid; */
+}
+
 html {
-  /* background: rgb(189, 189, 189); */
+  background-color: var(--grey);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+hr {
+  border: 1px solid black;
+}
+
+.spacer2 {
+  width: 100%;
+  height: 0.8rem;
+}
+
+input,
+button {
+  margin: 0;
+  padding: 0;
+  background-color: white;
+  box-sizing: border-box;
+}
+
+input {
+  /* margin-bottom: 0.3rem; */
+  padding: 0.7rem 0;
+  padding-left: 0.4rem;
+  border: 1px solid #c9c9c9;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --dark-blue: hsl(207, 61%, 60%);
+  --blue: hsl(208, 66%, 75%);
+  --green: #3caea3;
+  --yellow: #f6d55c;
+  --red: #ed553b;
+  --grey: #dfdfdf;
 }
 
 body {
@@ -8,45 +59,50 @@ body {
 
 h1 {
   margin: 0;
-  border: 1px solid lightblue;
-}
-
-.container {
-  width: 70vw;
-  margin: 0 auto;
-  display: flex;
-}
-
-.left {
-  width: 25%;
-  border: 1px solid lightblue;
-  overflow-wrap: break-word;
-}
-
-/* .left ::after {
-  content: '';
-  height: 48px;
-  background-color: red;
-} */
-
-.spacer {
-  height: 48px;
-}
-
-.right {
-  width: 75%;
-}
-
-input,
-button {
-  margin: 0;
-  padding: 0;
+  margin-bottom: 0.7rem;
 }
 
 /* --------------------------- */
 
+.container {
+  padding: 0 3rem;
+  padding-top: 2.5rem;
+  padding-bottom: 3rem;
+  border-radius: 1rem 3rem;
+  background-color: white;
+  width: 70vw;
+  height: 100%;
+  margin: 0 auto;
+  /* box-shadow: 5px 10px #888888; */
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 4px 16px 0px;
+}
+
+.header {
+}
+
+.content {
+  display: flex;
+  width: 100%;
+}
+
+.left {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  overflow-wrap: break-word;
+  margin-right: 0.4rem;
+}
+
+.right {
+  display: flex;
+  flex-direction: column;
+  width: 63%;
+}
+
 .ctaAPI {
-  border: 1px solid lightblue;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
   width: 100%;
 }
 
@@ -54,42 +110,112 @@ input {
   width: 80%;
 }
 
-button {
-  width: 18%;
+#btn--fetch {
+  border: 1px solid #c9c9c9;
+  margin-bottom: 0.3rem;
+  padding: 0.7rem 0;
+  width: 23%;
+}
+
+.explorerStatus {
+  margin-top: 0.2rem;
+  padding: 0.1rem;
+  /* margin-top: 0.3rem; */
+  padding-left: 0.4rem;
+  font-size: 0.9rem;
+  color: white;
+}
+
+.displayedJson {
+}
+
+pre {
+  width: 100%;
+  height: 68vh;
+  overflow: scroll;
+}
+
+/* --------------------------- */
+
+.templateRender {
+  width: 100%;
+  display: flex;
+  flex-flow: wrap-reverse;
 }
 
 .card {
-  border: 1px solid lightblue;
-}
+  /* border: 1px solid #c9c9c9; */
+  /* border: 1px solid #c9c9c9; */
 
-#resAPI {
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
   width: 100%;
-  border: 1px solid lightblue;
-  color: #555;
-  overflow-wrap: break-word;
 }
 
-.templateRender {
-  display: block;
+.url {
+  margin: 0.2rem;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+.historyStatus {
+  margin-top: 0.2rem;
+  text-align: center;
+  padding: 0.1rem;
+  font-size: 0.9rem;
+  width: 100%;
+  color: white;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  /* font-weight: bold; */
+}
+
+/* --------------------------- */
+
+.btn::before {
+  position: absolute;
+  height: 100%;
+  left: 0;
+  top: 0;
+  /* line-height: 3; */
+  /* font-size: 140%; */
+  width: 60px;
+}
+
+.btn:hover {
+  background: var(--blue);
+}
+
+.btn:active {
+  border: none;
+  background: var(--blue);
+  /* top: 2px; */
 }
 
 .btn {
+  /* width: 100%; */
+  border-radius: 0.3rem;
+  height: 100%;
+  color: #fff !important;
+  text-transform: uppercase;
+  text-decoration: none;
+  background: var(--dark-blue);
+  /* border-radius: 2px; */
+  display: inline-block;
+  border: none;
+  transition: all 0.4s ease 0s;
 }
 
-.btn--remove {
+#btn--clear {
+  height: 44px;
+  /* margin-bottom: 0.3rem; */
+  border: 1px solid #c9c9c9;
+  padding: 0.7rem 0;
   width: 100%;
 }
 
-.btn--fetch {
-  width: 100%;
-}
-
-.btn--clear {
-  width: 100%;
-  /* display: none; */
-}
-
-.btn--repeat {
+#btn--repeat {
+  padding: 0.3rem 0;
   width: 100%;
 }
 

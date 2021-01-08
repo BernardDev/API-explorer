@@ -36,7 +36,7 @@ function executeTest() {
         return {status: res.status, ok: res.ok};
       }
     } catch (e) {
-      return {status: 'error', ok: false};
+      return {status: '404', ok: false};
     }
   }
 
@@ -83,10 +83,14 @@ function executeTest() {
     historyCard.querySelector('.url').appendChild(targetUrl);
     addEventListenerClear();
 
-    historyCard.querySelector('.btn--repeat').addEventListener('click', () => {
-      document.getElementById('inputField').value = url;
-      delegateNfetch(url);
-    });
+    historyCard
+      .getElementById('btn--repeat')
+      .addEventListener('click', function () {
+        document.getElementById('inputField').value = url;
+        delegateNfetch(url);
+        console.log(this);
+        this.parentElement.remove();
+      });
     return historyCard;
   }
 
@@ -107,10 +111,12 @@ function executeTest() {
     let code;
     if (res.ok) {
       code = 'Ok';
-      element.style.backgroundColor = '#28ff85';
+      element.style.backgroundColor = '#3caea3';
+      // element.style.backgroundColor = '#3caea3';
     } else {
       code = 'Not ok';
-      element.style.backgroundColor = '#ff4128';
+      element.style.backgroundColor = '#ed553b';
+      // element.style.backgroundColor = '#ed553b';
     }
 
     const statusMessage = createStatus(res.status, code);
