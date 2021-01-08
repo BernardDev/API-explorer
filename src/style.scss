@@ -2,8 +2,14 @@ html {
   /* background: rgb(189, 189, 189); */
 }
 
+$body-color: green;
+
+body {
+}
+
 body {
   font-family: 'Poppins', sans-serif;
+  color: $body-color;
 }
 
 h1 {
@@ -24,10 +30,10 @@ h1 {
 }
 
 /* .left ::after {
-  content: '';
-  height: 48px;
-  background-color: red;
-} */
+    content: '';
+    height: 48px;
+    background-color: red;
+  } */
 
 .spacer {
   height: 48px;
@@ -92,5 +98,3 @@ button {
 .btn--repeat {
   width: 100%;
 }
-
-/* --------------------------- */
