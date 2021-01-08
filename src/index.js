@@ -2,21 +2,11 @@
 import './style.scss';
 
 function executeTest() {
-  //
-  //
+  // EVENT LISTENERS
   function addEventListenerFetch() {
     document
       .getElementById('btn--fetch')
       .addEventListener('click', fetchJSONBasedOnUserInput);
-  }
-
-  function addEventListenerRepeat() {
-    console.log('does it run');
-    document
-      .querySelector('.btn--repeat')
-      .addEventListener('click', repeatJsonRequest);
-    // should only be added after initiating templateCard copy
-    // should be added on each instance of the templateCard
   }
 
   function addEventListenerClear() {
@@ -25,6 +15,9 @@ function executeTest() {
       .addEventListener('click', clearJsonRequestHistory);
   }
 
+  // ---------------------------------------------------------
+
+  // INPUT FIELD
   function getURLfromInput() {
     return document.getElementById('inputField').value;
   }
@@ -34,17 +27,9 @@ function executeTest() {
     delegateNfetch(url);
   }
 
-  async function delegateNfetch(url) {
-    const res = await fetchJSON(url);
-    addToHistory(res, url);
-    displayInExplorer(res);
-  }
+  // ---------------------------------------------------------
 
-  function repeatJsonRequest() {
-    // here we need the url from temp instance
-    console.log(url);
-  }
-
+  // DATA
   async function fetchJSON(url) {
     try {
       let res = await fetch(`${url}`);
@@ -54,17 +39,18 @@ function executeTest() {
         return {status: res.status, ok: res.ok};
       }
     } catch (e) {
-      return {status: 'error', ok: false};
+      return {status: '404', ok: false};
     }
   }
 
-  function createStatus(status, code) {
-    const statusMessage = document.createTextNode(
-      `Response: ${status} ${code}`
-    );
-    return statusMessage;
+  async function delegateNfetch(url) {
+    const res = await fetchJSON(url);
+    addToHistory(res, url);
+    displayInExplorer(res);
   }
+  // ---------------------------------------------------------
 
+  // JSON
   function displayJson(json) {
     let jsonParsed = JSON.stringify(json, null, 4);
     const pre = document.createElement('pre');
@@ -73,6 +59,9 @@ function executeTest() {
     document.getElementById('displayedJson').appendChild(pre);
   }
 
+  // ---------------------------------------------------------
+
+  // EXPLORER
   function displayInExplorer(res) {
     document.getElementById('displayedJson').innerHTML = '';
     if (res.ok) {
@@ -84,14 +73,9 @@ function executeTest() {
     displayStatus(res, explorerStatus);
   }
 
-  function addToHistory(res, url) {
-    let historyCard = createHistoryCard(res, url);
-    document.querySelector('.templateRender').appendChild(historyCard);
-    addEventListenerRepeat();
-    // get url from instance
-    // give unique id
-  }
+  // ---------------------------------------------------------
 
+  // HISTORY TEMP
   function createHistoryCard(res, url) {
     let historyTemplate = document.querySelector('.template').content;
     let historyCard = historyTemplate.cloneNode(true);
@@ -101,74 +85,54 @@ function executeTest() {
     const targetUrl = document.createTextNode(url);
     historyCard.querySelector('.url').appendChild(targetUrl);
     addEventListenerClear();
-    // get url from instance
-    // give unique id
+
+    historyCard
+      .getElementById('btn--repeat')
+      .addEventListener('click', function () {
+        document.getElementById('inputField').value = url;
+        delegateNfetch(url);
+        console.log(this);
+        this.parentElement.remove();
+      });
     return historyCard;
   }
 
+  function addToHistory(res, url) {
+    let historyCard = createHistoryCard(res, url);
+    document.querySelector('.templateRender').appendChild(historyCard);
+  }
+
+  //
   function clearJsonRequestHistory() {
     let what = (document.querySelector('.templateRender').innerHTML = '');
   }
 
+  // ---------------------------------------------------------
+
+  // STATUS MESSAGE
   function displayStatus(res, element) {
     let code;
     if (res.ok) {
       code = 'Ok';
-      element.style.backgroundColor = '#28ff85';
+      element.style.backgroundColor = '#3caea3';
+      // element.style.backgroundColor = '#3caea3';
     } else {
       code = 'Not ok';
-      element.style.backgroundColor = '#ff4128';
+      element.style.backgroundColor = '#ed553b';
+      // element.style.backgroundColor = '#ed553b';
     }
 
     const statusMessage = createStatus(res.status, code);
     element.appendChild(statusMessage);
   }
-  addEventListenerFetch();
 
-  // addEventListenerRepeat();
+  function createStatus(status, code) {
+    const statusMessage = document.createTextNode(
+      `Response: ${status} ${code}`
+    );
+    return statusMessage;
+  }
+
+  addEventListenerFetch();
 }
 executeTest();
-
-// ------------------
-// display data explorer: res{}
-// display data in history: res{}
-
-// similar?
-// different yes /no? parameters
-
-// functionality
-// chunking
-// data vs formatting
-// isolate test
-// naming: describing
-// delegating function
-
-// const templateRender = document.querySelector('.template');
-// templateRender.style.display = 'block';
-// document.querySelector('#clearBtn').style.display = 'block';
-
-// ---------------------------------
-
-// function eventClear() {
-//   const buttonClear = document.getElementById('clearBtn');
-//   buttonClear.addEventListener('click', () => {
-//     const templateRender = document.querySelector('.template');
-//     console.log(templateRender, 'test');
-//     templateRender.style.display = 'none';
-//   });
-// }
-
-// return {
-//   status: (res.status = status),
-//   ok: (res.ok = statusOk),
-//   json: (await res.json() = resJson),
-// };
-
-// nieuwe functie
-// stukje code daar in plakken
-// parameters (placeholders) invullen
-// content afhankelijk van parameter herschrijven
-// returnen ?
-// bedenken waar de functie te callen
-// arguments invullen
-//

@@ -14,30 +14,38 @@
             </div>
             <div class='url'>
             </div>
-            <button class="btn--repeat">
+            <button class="btn btn--repeat" id="btn--repeat">
                 repeat
             </button>
         </div>
     </template>
 </head>
+<!-- https://pokeapi.co/api/v2/pokemon/ditto -->
 
 <body>
     <div class="container">
-        <div class="left">
-            <div class="spacer"></div>
-            <button id="btn--clear">Clear All</button>
-            <div class='templateRender'></div>
-        </div>
-        <div class="right">
+        <header class="header">
             <h1>API Explorer</h1>
-            <div class="ctaAPI">
-                <input type="text" id="inputField" value="https://pokeapi.co/api/v2/pokemon/ditto" />
-                <button id="btn--fetch">Get JSON</button>
+        </header>
+        <main class="content">
+            <div class="left">
+                <button class="btn btn--clear" id="btn--clear">Clear All</button>
+                <div class="spacer2"></div>
+                <!-- <hr> -->
+                <div class='templateRender'></div>
             </div>
-            </button>
-            <div class='explorerStatus'></div>
-            <div id='displayedJson'></div>
-        </div>
+            <div class="right">
+                <div class="ctaAPI">
+                    <input type="text" id="inputField" value="" />
+                    <button class="btn btn--fetch" id="btn--fetch">Get JSON</button>
+                </div>
+                </button>
+                <div class="spacer2"></div>
+                <!-- <hr> -->
+                <div class='explorerStatus'></div>
+                <div id='displayedJson'></div>
+            </div>
+        </main>
     </div>
     <script src="/main.js"></script>
 </body>
